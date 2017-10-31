@@ -14,6 +14,12 @@ class GetJsonDownloadApiTest extends TestCase
      */
     public function testExample()
     {
-        $this->assertTrue(true);
+        $response = $this->json('GET', '/api/download');
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                'status' => true,
+                'data' => []
+            ]);
     }
 }

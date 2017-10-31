@@ -10,8 +10,13 @@
                 <input type="text" required class="form-control" name="app_id" placeholder="Applicatoin Id"/>
             </div>
 
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-success btn-block"/>
+            <div class="form-group row">
+                <span class="col-md-6">
+                    <input type="submit" value="Create" class="btn btn-success btn-block"/>
+                </span>
+                <span class="col-md-6">
+                    <a href="{{route('apps.index')}}" class="btn btn-default btn-block">Cancel</a>
+                </span>
             </div>
         </form>
     </div>

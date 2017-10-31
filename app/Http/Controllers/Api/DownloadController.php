@@ -12,10 +12,21 @@ final class DownloadController extends Controller
 {
     /**
      * @param Service $service
+     * @param string|null $type
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Service $service)
+    public function index(Service $service, $type = null)
     {
-        $service->addDownloadEntry('IOS_ALERT', 52.5200, 13.4050);
+        if ($type){
+            $data = [];
+        } else {
+            $data = $service->getAll();
+        }
+
+        return response()->json([
+            'status' => true,
+            'data' => $data
+        ]);
     }
 
     public function store(StoreDownloadRequest $request, Service $service)

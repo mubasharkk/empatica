@@ -3,6 +3,7 @@
 namespace App\Services\Downloads;
 
 use App\AppDownload;
+use App\Services\Downloads\Dto\Location;
 
 final class AppDownloadRepository
 {
@@ -28,5 +29,16 @@ final class AppDownloadRepository
         $entity->save();
 
         return $entity->id;
+    }
+
+    public function fetchAll()
+    {
+        return AppDownload::all()->map(function(AppDownload $item){
+            return new \App\Services\Downloads\Dto\AppDownload(
+                $item->id,
+                $item->app_id,
+                new Location($item->country, $item->city, $item->postal_code)
+            );
+        });
     }
 }

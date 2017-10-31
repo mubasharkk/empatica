@@ -55,4 +55,9 @@ final class Service
 
         return $entryId;
     }
+
+    public function getAll()
+    {
+        return $this->repository->fetchAll();
+    }
 }
