@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MobileAppCreateRequest;
-use App\Services\Downloads\Service;
+use App\Services\MobileApp\Service;
 
 final class AppController extends Controller
 {
     public function index(Service $service)
     {
-        $list = $service->get();
+        return view('pages.app.list', [
+            'list' => $service->listAll()->toArray()
+        ]);
     }
 
     public function create()
@@ -17,8 +19,9 @@ final class AppController extends Controller
         return view('pages.app.create');
     }
 
-    public function store(MobileAppCreateRequest $request)
+    public function store(MobileAppCreateRequest $request, Service $service)
     {
-        dd($request->all());
+        $service->createNewApp($request->input('app_id'), null);
+        return redirect()->route('apps.index');
     }
 }

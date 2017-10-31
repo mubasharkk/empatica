@@ -24,7 +24,7 @@ class MobileAppCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'app_id' => 'required|unique:applications.app_id'
+            'app_id' => 'required|unique:applications,app_id'
         ];
     }
 }
