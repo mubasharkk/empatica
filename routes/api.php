@@ -18,3 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('/download', 'Api\DownloadController');
+Route::get('/download/app/{type}', [
+    'uses' => 'Api\DownloadController@index',
+    'as' => 'api.download.type'
+]);

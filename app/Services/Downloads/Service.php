@@ -60,4 +60,9 @@ final class Service
     {
         return $this->repository->fetchAll();
     }
+
+    public function getByApp($appId)
+    {
+        return $this->repository->fetchByAppId($appId);
+    }
 }

@@ -33,12 +33,24 @@ final class AppDownloadRepository
 
     public function fetchAll()
     {
-        return AppDownload::all()->map(function(AppDownload $item){
-            return new \App\Services\Downloads\Dto\AppDownload(
-                $item->id,
-                $item->app_id,
-                new Location($item->country, $item->city, $item->postal_code)
-            );
+        return AppDownload::all()->map(function (AppDownload $item) {
+            return $this->buildAppDownload($item);
+        });
+    }
+
+    private function buildAppDownload(AppDownload $item)
+    {
+        return new \App\Services\Downloads\Dto\AppDownload(
+            $item->id,
+            $item->app_id,
+            new Location($item->country, $item->city, $item->postal_code)
+        );
+    }
+
+    public function fetchByAppId($appId)
+    {
+        return AppDownload::where('app_id', $appId)->get()->map(function (AppDownload $item) {
+            return $this->buildAppDownload($item);
         });
     }
 }

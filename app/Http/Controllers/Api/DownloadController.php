@@ -12,13 +12,14 @@ final class DownloadController extends Controller
 {
     /**
      * @param Service $service
-     * @param string|null $type
+     * @param null $appType
      * @return \Illuminate\Http\JsonResponse
+     * @internal param null|string $type
      */
-    public function index(Service $service, $type = null)
+    public function index(Service $service, $appType = null)
     {
-        if ($type){
-            $data = [];
+        if ($appType){
+            $data = $service->getByApp($appType);
         } else {
             $data = $service->getAll();
         }
