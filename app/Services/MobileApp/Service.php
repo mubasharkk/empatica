@@ -30,4 +30,9 @@ final class Service
     {
         return $this->repository->add($appId, $status, $userId);
     }
+
+    public function deleteApp($appId)
+    {
+        $this->repository->delete($appId);
+    }
 }

@@ -47,4 +47,10 @@ final class Repository
 
         return $mobileApp->id;
     }
+
+    public function delete($appId)
+    {
+        $app = MobileApp::find($appId);
+        $app->delete();
+    }
 }

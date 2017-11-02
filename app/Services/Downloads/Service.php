@@ -40,6 +40,9 @@ final class Service
             /** @var GoogleAddress $geoCodedData */
             $geoCodedData = $this->geoCoder->reverse($latitude, $longitude)->get(0)->first();
 
+            if (!$geoCodedData)
+                throw new LocationNotFound();
+
             $entryId = $this->repository->add(
                 $appId,
                 $latitude,
