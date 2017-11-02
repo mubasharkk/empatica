@@ -14,13 +14,22 @@ final class Repository
     public function fetchAll()
     {
         return MobileApp::get()->map(function (MobileApp $app){
-            return new \App\Services\MobileApp\Dto\MobileApp(
-                $app->id,
-                $app->app_id,
-                $app->created_at,
-                $app->created_by
-            );
+            return $this->buildMobileApp($app);
         });
+    }
+
+    /**
+     * @param MobileApp $app
+     * @return Dto\MobileApp
+     */
+    private function buildMobileApp(MobileApp $app)
+    {
+        return new \App\Services\MobileApp\Dto\MobileApp(
+            $app->id,
+            $app->status,
+            $app->created_at,
+            $app->created_by
+        );
     }
 
     /**
@@ -28,10 +37,11 @@ final class Repository
      * @param int $userId
      * @return int
      */
-    public function add($appId, $userId)
+    public function add($appId, $status, $userId)
     {
         $mobileApp = new MobileApp();
-        $mobileApp->app_id = $appId;
+        $mobileApp->id = $appId;
+        $mobileApp->status = $status;
         $mobileApp->created_by = $userId;
         $mobileApp->save();
 

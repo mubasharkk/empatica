@@ -26,8 +26,8 @@ final class Service
      * @param int $userId
      * @return int
      */
-    public function createNewApp($appId, $userId)
+    public function createNewApp($appId, $status, $userId)
     {
-        return $this->repository->add($appId, $userId);
+        return $this->repository->add($appId, $status, $userId);
     }
 }

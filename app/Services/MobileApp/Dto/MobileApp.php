@@ -13,9 +13,9 @@ final class MobileApp implements \JsonSerializable, Arrayable
     private $id;
 
     /**
-     * @var string
+     * @var boolean
      */
-    private $appId;
+    private $status;
 
     /**
      * @var null|User
@@ -29,14 +29,14 @@ final class MobileApp implements \JsonSerializable, Arrayable
 
     /**
      * @param int $id
-     * @param string $appId
+     * @param string $status
      * @param Carbon $createdAt
      * @param null|User $createdBy
      */
-    public function __construct($id, $appId, Carbon $createdAt, User $createdBy = null)
+    public function __construct($id, $status, Carbon $createdAt, User $createdBy = null)
     {
         $this->id = $id;
-        $this->appId = $appId;
+        $this->status = $status;
         $this->createdBy = $createdBy;
         $this->createdAt = $createdAt;
     }
@@ -50,11 +50,11 @@ final class MobileApp implements \JsonSerializable, Arrayable
     }
 
     /**
-     * @return string
+     * @return boolean
      */
-    public function appId()
+    public function status()
     {
-        return $this->appId;
+        return $this->status;
     }
 
     /**
@@ -66,12 +66,11 @@ final class MobileApp implements \JsonSerializable, Arrayable
     }
 
     /**
-     * @param string $format
      * @return Carbon
      */
-    public function createdAt($format = 'd.m.Y h:i:s')
+    public function createdAt()
     {
-        return $this->createdAt->format($format);
+        return $this->createdAt;
     }
 
     /**
@@ -91,9 +90,9 @@ final class MobileApp implements \JsonSerializable, Arrayable
     {
         return [
             'id' => $this->id(),
-            'app_id' => $this->appId(),
+            'status' => $this->status(),
             'created_by' => $this->createdBy(),
-            'created_at' => $this->createdAt()
+            'created_at' => $this->createdAt()->format('d.m.Y h:i:s')
         ];
     }
 

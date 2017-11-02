@@ -21,7 +21,7 @@ final class AppController extends Controller
 
     public function store(MobileAppCreateRequest $request, Service $service)
     {
-        $service->createNewApp($request->input('app_id'), null);
+        $service->createNewApp($request->input('app_id'), $request->input('status'), null);
         return redirect()->route('apps.index');
     }
 }
