@@ -11,8 +11,8 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link href="{{asset('bootstrap/css/bootstrap.css')}}" rel="stylesheet"/>
-    <link href="{{asset('bootstrap/css/bootstrap-theme.css')}}" rel="stylesheet"/>
+    <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
     <style>
         .overflow-fix {
@@ -22,32 +22,23 @@
     </style>
 </head>
 <body>
-<div class="flex-center position-ref full-height">
+<div>
 
-    @if (Route::has('login'))
-        <div class="top-right links">
-            <a href="{{ url('/home') }}">Applications</a>
-            @auth
-                <a href="{{ url('/home') }}">Home</a>
-                @else
-                    <a href="{{ route('login') }}">Login</a>
-                    <a href="{{ route('register') }}">Register</a>
-                    @endauth
-        </div>
-    @endif
+    @include('components.header')
+
+    {{--@if (Route::has('login'))--}}
+        {{--<div class="top-right links">--}}
+            {{--<a href="{{ url('/home') }}">Applications</a>--}}
+            {{--@auth--}}
+                {{--<a href="{{ url('/home') }}">Home</a>--}}
+                {{--@else--}}
+                    {{--<a href="{{ route('login') }}">Login</a>--}}
+                    {{--<a href="{{ route('register') }}">Register</a>--}}
+                    {{--@endauth--}}
+        {{--</div>--}}
+    {{--@endif--}}
 
     <div class="container content">
-        <div class="page-header overflow-fix">
-            <span class="col-md-6"><h1>Empatica</h1></span>
-            <span class="col-md-6">
-                <nav class="navbar">
-                    <ul class="navbar">
-                        <li><a href="{{ url('/home') }}">Applications</a></li>
-                    </ul>
-                </nav>
-            </span>
-        </div>
-
         @if($errors->any())
             @foreach ($errors->all() as $error)
                 <div class="alert alert-danger">
@@ -62,7 +53,9 @@
 
     @yield('scripts')
 
-    <script type="text/javascript" src="{{asset('bootstrap/js/bootstrap.js')}}"></script>
+    <script type="text/javascript" src="{{asset('vendor/jquery/jquery.js')}}"></script>
+    <script type="text/javascript" src="{{asset('vendor/bootstrap/js/popper.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('vendor/bootstrap/js/bootstrap.js')}}"></script>
 </div>
 </body>
 </html>
