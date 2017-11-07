@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{config('app.name')}}</title>
 
@@ -13,7 +14,8 @@
     <!-- Styles -->
     <link href="{{asset('vendor/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
-    <link href="{{asset('css/app.css')}}" rel="stylesheet">
+    <link href="{{asset('css/animate.css')}}" rel="stylesheet">
+    <link href="{{mix('css/app.css')}}" rel="stylesheet">
 
     <style>
         .overflow-fix {
@@ -51,12 +53,14 @@
         @yield('content')
     </div>
 
+    @include('components.footer')
 
     @yield('scripts')
 
     <script type="text/javascript" src="{{asset('vendor/jquery/jquery.js')}}"></script>
-    <script type="text/javascript" src="{{asset('vendor/bootstrap/js/popper.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('vendor/bootstrap/js/bootstrap.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{mix('js/app.js')}}"></script>
 </div>
 </body>
 </html>

@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['uses' => 'DashboardController@index', 'as' => 'home']);
 
 Route::resource('apps', 'AppController');

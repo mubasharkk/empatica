@@ -7,20 +7,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{route('apps.index')}}">Applications
-                        <span class="sr-only">(current)</span>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('home')}}">
+                        <i class="fa fa-fw fa-dashboard"></i> Dashboard
                     </a>
                 </li>
-                {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="#">About</a>--}}
-                {{--</li>--}}
-                {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="#">Services</a>--}}
-                {{--</li>--}}
-                {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="#">Contact</a>--}}
-                {{--</li>--}}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('apps.index')}}">
+                        <i class="fa fa-fw fa-cubes"></i> Applications
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
