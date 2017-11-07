@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Services\Downloads\Service;
+use Geocoder\Provider\GoogleMaps\Model\GoogleAddress;
 use Illuminate\Console\Command;
 
 class ImportDownloadsData extends Command
@@ -43,10 +44,15 @@ class ImportDownloadsData extends Command
         foreach ($data['import-data'] as $item) {
             try {
                 $item = (object)$item;
-                $dt = $geocoder->geocode(implode(', ', [$item->city, $item->country]))->dump('kml');
+                /** @var GoogleAddress $dt */
+                $dt = $geocoder->geocode(implode(', ', [$item->city, $item->country]))->get(0)->first();
 
                 if ($dt) {
-                    $id = $service->addDownloadEntry($item->app_id, $item->latitude, $item->longitude);
+                    $id = $service->addDownloadEntry(
+                        $item->app_id,
+                        $dt->getCoordinates()->getLatitude(),
+                        $dt->getCoordinates()->getLongitude()
+                    );
                     $this->info("Entry #{$id}");
                 }
             } catch (\Exception $ex) {
