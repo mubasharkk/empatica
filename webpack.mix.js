@@ -13,6 +13,8 @@ let mix = require('laravel-mix');
 
 mix.react([
         'resources/assets/js/app.js',
-        'resources/assets/js/components/Example.js'
+        'resources/assets/js/components/DashboardApp.jsx',
+        'resources/assets/js/components/InfoGraph.jsx',
+        'resources/assets/js/components/LineGraph.jsx',
     ], 'public/js/app.js')
     .sass('resources/assets/sass/app.scss', 'public/css');

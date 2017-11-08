@@ -1391,7 +1391,9 @@ module.exports = ExecutionEnvironment;
 
 __webpack_require__(19);
 __webpack_require__(47);
-module.exports = __webpack_require__(66);
+__webpack_require__(66);
+__webpack_require__(67);
+module.exports = __webpack_require__(68);
 
 
 /***/ }),
@@ -42947,6 +42949,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LineGraph__ = __webpack_require__(67);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -42958,68 +42961,51 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var Example = function (_Component) {
-    _inherits(Example, _Component);
 
-    function Example() {
-        _classCallCheck(this, Example);
+var DashboardApp = function (_Component) {
+    _inherits(DashboardApp, _Component);
 
-        return _possibleConstructorReturn(this, (Example.__proto__ || Object.getPrototypeOf(Example)).apply(this, arguments));
+    function DashboardApp(props) {
+        _classCallCheck(this, DashboardApp);
+
+        var _this = _possibleConstructorReturn(this, (DashboardApp.__proto__ || Object.getPrototypeOf(DashboardApp)).call(this, props));
+
+        console.log(props);
+
+        _this.props = props;
+
+        _this.graph = new __WEBPACK_IMPORTED_MODULE_2__LineGraph__["default"](props);
+
+        _this.state = {};
+        return _this;
     }
 
-    _createClass(Example, [{
-        key: 'elemStyle',
-        value: function elemStyle() {
-            return {
-                'color': '#fced16',
-                'padding': '10px'
-            };
+    _createClass(DashboardApp, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            this.graph.preRender();
         }
     }, {
-        key: 'handleChange',
-        value: function handleChange(event) {
-            $('#title').html(event.target.value);
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.graph.postRender();
         }
     }, {
         key: 'render',
         value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'text-center' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'animated lightSpeedIn' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { height: '250', src: 'http://www.petmd.com/sites/default/files/petmd-cat-happy-10.jpg' })
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'h1',
-                        { id: 'title', style: this.elemStyle() },
-                        'I ',
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-heart-o' }),
-                        '  icecream '
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'col-md-6 col-md-offset-3 form-group' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { rows: 5, cols: 50, className: 'form-control', onChange: this.handleChange })
-                    )
-                )
-            );
+            return this.graph.render();
         }
     }]);
 
-    return Example;
+    return DashboardApp;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Example);
+/* harmony default export */ __webpack_exports__["default"] = (DashboardApp);
 
 // We only want to try to render our component on pages that have a div with an ID
 // of "example"; otherwise, we will see an error in our console
-if (document.getElementById('example')) {
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Example, null), document.getElementById('example'));
+if (document.getElementById('dashboard')) {
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(DashboardApp, { GraphType: 'LineGraph' }), document.getElementById('dashboard'));
 }
 
 /***/ }),
@@ -63126,6 +63112,132 @@ module.exports = getActiveElement;
 
 /***/ }),
 /* 66 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var InfoGraph = function (_Component) {
+    _inherits(InfoGraph, _Component);
+
+    function InfoGraph(props) {
+        _classCallCheck(this, InfoGraph);
+
+        var _this = _possibleConstructorReturn(this, (InfoGraph.__proto__ || Object.getPrototypeOf(InfoGraph)).call(this, props));
+
+        _this.props = props;
+        return _this;
+    }
+
+    _createClass(InfoGraph, [{
+        key: 'preRender',
+        value: function preRender() {}
+    }, {
+        key: 'postRender',
+        value: function postRender() {}
+    }, {
+        key: 'render',
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('svg', { id: 'graph' });
+        }
+    }]);
+
+    return InfoGraph;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (InfoGraph);
+
+/***/ }),
+/* 67 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InfoGraph__ = __webpack_require__(66);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var LineGraph = function (_InfoGraph) {
+    _inherits(LineGraph, _InfoGraph);
+
+    function LineGraph(props) {
+        _classCallCheck(this, LineGraph);
+
+        return _possibleConstructorReturn(this, (LineGraph.__proto__ || Object.getPrototypeOf(LineGraph)).call(this, props));
+    }
+
+    _createClass(LineGraph, [{
+        key: "preRender",
+        value: function preRender() {}
+    }, {
+        key: "postRender",
+        value: function postRender() {
+            var svg = d3.select("svg"),
+                margin = { top: 20, right: 20, bottom: 30, left: 50 },
+                width = +svg.attr("width") - margin.left - margin.right,
+                height = +svg.attr("height") - margin.top - margin.bottom,
+                g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            var parseTime = d3.timeParse("%d-%b-%y");
+
+            var x = d3.scaleTime().rangeRound([0, width]);
+
+            var y = d3.scaleLinear().rangeRound([height, 0]);
+
+            var line = d3.line().x(function (d) {
+                return x(d.date);
+            }).y(function (d) {
+                return y(d.close);
+            });
+
+            d3.tsv("data.tsv", function (d) {
+                d.date = parseTime(d.date);
+                d.close = +d.close;
+                return d;
+            }, function (error, data) {
+                if (error) throw error;
+
+                x.domain(d3.extent(data, function (d) {
+                    return d.date;
+                }));
+                y.domain(d3.extent(data, function (d) {
+                    return d.close;
+                }));
+
+                g.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x)).select(".domain").remove();
+
+                g.append("g").call(d3.axisLeft(y)).append("text").attr("fill", "#000").attr("transform", "rotate(-90)").attr("y", 6).attr("dy", "0.71em").attr("text-anchor", "end").text("Price ($)");
+
+                g.append("path").datum(data).attr("fill", "none").attr("stroke", "steelblue").attr("stroke-linejoin", "round").attr("stroke-linecap", "round").attr("stroke-width", 1.5).attr("d", line);
+            });
+        }
+    }]);
+
+    return LineGraph;
+}(__WEBPACK_IMPORTED_MODULE_0__InfoGraph__["default"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (LineGraph);
+
+/***/ }),
+/* 68 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
