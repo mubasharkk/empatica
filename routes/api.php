@@ -23,4 +23,4 @@ Route::get('/download/app/{type}', [
     'as' => 'api.download.type'
 ]);
 
-Route::get('/dashboard/graph/{type}/data', 'DashboardController@index');
+Route::get('/dashboard/graph/{type}/data', 'Api\DashboardDataController@index');

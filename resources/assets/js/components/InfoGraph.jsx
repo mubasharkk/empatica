@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 class InfoGraph extends Component {
 
@@ -7,17 +8,22 @@ class InfoGraph extends Component {
         this.props = props;
     }
 
-    preRender() {
-
-    }
-
-    postRender() {
-
+    sendRequest(requestUri, params, callback) {
+        axios
+            .get(requestUri, {
+                params: params
+            })
+            .then(callback)
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     render() {
         return (
-            <svg id={'graph'} width={960} height={500}></svg>
+            <div>
+                <svg id={this.state.name} width={960} height={500}></svg>
+            </div>
         );
     }
 }
