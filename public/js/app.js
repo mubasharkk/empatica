@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 20);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,7 +70,7 @@
 "use strict";
 
 
-var bind = __webpack_require__(10);
+var bind = __webpack_require__(8);
 var isBuffer = __webpack_require__(29);
 
 /*global toString:true*/
@@ -593,10 +593,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(12);
+    adapter = __webpack_require__(10);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(12);
+    adapter = __webpack_require__(10);
   }
   return adapter;
 }
@@ -667,24 +667,10 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-if (false) {
-  module.exports = require('./cjs/react.production.min.js');
-} else {
-  module.exports = __webpack_require__(50);
-}
-
-
-/***/ }),
-/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -781,7 +767,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -797,7 +783,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 if (true) {
   var invariant = __webpack_require__(3);
   var warning = __webpack_require__(2);
-  var ReactPropTypesSecret = __webpack_require__(17);
+  var ReactPropTypesSecret = __webpack_require__(16);
   var loggedTypeFailures = {};
 }
 
@@ -847,13 +833,7 @@ module.exports = checkPropTypes;
 
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(28);
-
-/***/ }),
-/* 10 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -871,7 +851,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 11 */
+/* 9 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1061,7 +1041,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 12 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1072,7 +1052,7 @@ var settle = __webpack_require__(32);
 var buildURL = __webpack_require__(34);
 var parseHeaders = __webpack_require__(35);
 var isURLSameOrigin = __webpack_require__(36);
-var createError = __webpack_require__(13);
+var createError = __webpack_require__(11);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(37);
 
 module.exports = function xhrAdapter(config) {
@@ -1248,7 +1228,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 13 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1273,7 +1253,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 14 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1285,7 +1265,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 15 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1311,7 +1291,21 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 16 */
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+if (false) {
+  module.exports = require('./cjs/react.production.min.js');
+} else {
+  module.exports = __webpack_require__(50);
+}
+
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1334,7 +1328,7 @@ if (true) {
 module.exports = emptyObject;
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1353,7 +1347,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1392,13 +1386,13 @@ var ExecutionEnvironment = {
 module.exports = ExecutionEnvironment;
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InfoGraph__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InfoGraph__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -1421,7 +1415,7 @@ var LineGraph = function (_InfoGraph) {
 
         _this.state = {
             name: 'line-graph',
-            data: ''
+            data: []
         };
         return _this;
     }
@@ -1429,64 +1423,66 @@ var LineGraph = function (_InfoGraph) {
     _createClass(LineGraph, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            this.processData();
+            var _this2 = this;
+
+            this.prepareGraph();
+            setInterval(function () {
+                return _this2.populateGraph();
+            }, 5000);
         }
     }, {
-        key: 'processData',
-        value: function processData() {
-
-            var svg = d3.select("svg"),
-                margin = { top: 50, right: 50, bottom: 50, left: 50 },
-                width = svg.attr("width") - margin.left - margin.right - 60,
-                height = svg.attr("height") - margin.top - margin.bottom,
-                g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-            var x = d3.scaleTime().range([0, width]),
-                y = d3.scaleLinear().range([height, 0]),
-                z = d3.scaleOrdinal(d3.schemeCategory10);
-
-            var line = d3.line().curve(d3.curveBasis).x(function (d) {
-                return x(parseInt(d.hour));
-            }).y(function (d) {
-                return y(d.IOS_MATE);
+        key: 'prepareGraph',
+        value: function prepareGraph() {
+            this.setState({
+                chart: new CanvasJS.Chart("chartContainer", {
+                    exportEnabled: true,
+                    animationEnabled: true,
+                    title: {
+                        text: "Downloads Peek Hours"
+                    },
+                    axisX: {
+                        valueFormatString: "0#",
+                        suffix: ":00"
+                    },
+                    axisY: {
+                        title: "No. of downloads"
+                    },
+                    legend: {
+                        cursor: "pointer",
+                        fontSize: 14
+                    },
+                    toolTip: {
+                        shared: true
+                    },
+                    data: this.state.data
+                })
             });
+        }
+    }, {
+        key: 'populateGraph',
+        value: function populateGraph() {
+            var _this3 = this;
 
-            d3.json('/api/dashboard/graph/peek-hours/data', function (error, data) {
-                if (error) throw error;
-
-                if (!data.status) {
-                    return;
-                }
-
-                data = data.data.slice(1);
-                var appTypes = Object.keys(data[0]).filter(function (key) {
-                    if (key != 'hour') {
-                        return key;
-                    }
+            axios.get('/api/dashboard/graph/peek-hours/data').then(function (response) {
+                _this3.setState({
+                    data: response.data.data.map(function (item) {
+                        return {
+                            'name': item.name,
+                            'type': 'line',
+                            showInLegend: true,
+                            xValueFormatString: "#0.##",
+                            dataPoints: item.points.map(function (data) {
+                                return {
+                                    x: data.hour,
+                                    y: data.count
+                                };
+                            })
+                        };
+                    })
                 });
-
-                // Scale the range of the data
-                x.domain([0, 23]);
-                y.domain([0, 60]);
-
-                // Add the valueline path.
-                svg.append("path").data([data]).attr("class", "line").attr("d", line);
-
-                svg.append("g").attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x));
-
-                // Add the Y Axis
-                svg.append("g").attr("transform", "translate(" + (margin.left + 30) + ", 0)").call(d3.axisLeft(y));
-
-                svg.append("text").attr("transform", "translate(" + (width + 5) + "," + y(data[22].IOS_MATE) + ")").attr("dy", ".35em").attr("text-anchor", "start").style("fill", "steelblue").text("IOS_MATE");
-
-                // now add titles to the axes
-                svg.append("text").attr("text-anchor", "middle") // this makes it easy to centre the text as the transform is applied to the anchor
-                .attr("transform", "translate(" + margin.left / 2 + "," + width / 4 + ")rotate(-90)") // text is drawn off the screen top left, move down and out and rotate
-                .text("Downloads per hour");
-
-                svg.append("text").attr("text-anchor", "middle") // this makes it easy to centre the text as the transform is applied to the anchor
-                .attr("transform", "translate(" + width / 2 + "," + (height + margin.bottom) + ")") // centre below axis
-                .text("Daily Hours");
+            }).then(function () {
+                _this3.state.chart.options.data = _this3.state.data;
+                _this3.state.chart.render();
             });
         }
     }]);
@@ -1497,14 +1493,14 @@ var LineGraph = function (_InfoGraph) {
 /* harmony default export */ __webpack_exports__["default"] = (LineGraph);
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -1544,7 +1540,7 @@ var InfoGraph = function (_Component) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('svg', { id: this.state.name, width: 960, height: 500 })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'chartContainer', className: 'info-graph' })
             );
         }
     }]);
@@ -1555,18 +1551,18 @@ var InfoGraph = function (_Component) {
 /* harmony default export */ __webpack_exports__["default"] = (InfoGraph);
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(22);
+__webpack_require__(21);
 __webpack_require__(49);
-__webpack_require__(20);
 __webpack_require__(19);
-module.exports = __webpack_require__(68);
+__webpack_require__(18);
+module.exports = __webpack_require__(69);
 
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -1576,7 +1572,7 @@ module.exports = __webpack_require__(68);
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(23);
+__webpack_require__(22);
 
 window.Vue = __webpack_require__(46);
 
@@ -1593,11 +1589,11 @@ window.Vue = __webpack_require__(46);
 // });
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(24);
+window._ = __webpack_require__(23);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -1606,9 +1602,9 @@ window._ = __webpack_require__(24);
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(26);
+  window.$ = window.jQuery = __webpack_require__(25);
 
-  __webpack_require__(27);
+  __webpack_require__(26);
 } catch (e) {}
 
 /**
@@ -1617,7 +1613,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(9);
+window.axios = __webpack_require__(27);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -1651,7 +1647,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -18740,10 +18736,10 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(25)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(24)(module)))
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -18771,7 +18767,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -29031,7 +29027,7 @@ return jQuery;
 
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports) {
 
 /*!
@@ -31414,6 +31410,12 @@ if (typeof jQuery === 'undefined') {
 
 
 /***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(28);
+
+/***/ }),
 /* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31421,7 +31423,7 @@ if (typeof jQuery === 'undefined') {
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(10);
+var bind = __webpack_require__(8);
 var Axios = __webpack_require__(30);
 var defaults = __webpack_require__(5);
 
@@ -31456,9 +31458,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(15);
+axios.Cancel = __webpack_require__(13);
 axios.CancelToken = __webpack_require__(44);
-axios.isCancel = __webpack_require__(14);
+axios.isCancel = __webpack_require__(12);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -31618,7 +31620,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(13);
+var createError = __webpack_require__(11);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -32037,7 +32039,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(41);
-var isCancel = __webpack_require__(14);
+var isCancel = __webpack_require__(12);
 var defaults = __webpack_require__(5);
 
 /**
@@ -32190,7 +32192,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(15);
+var Cancel = __webpack_require__(13);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -43100,7 +43102,7 @@ exports.clearImmediate = clearImmediate;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(11)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(9)))
 
 /***/ }),
 /* 49 */
@@ -43108,12 +43110,13 @@ exports.clearImmediate = clearImmediate;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LineGraph__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__GeoGraph__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LineGraph__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LineGraph___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__LineGraph__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__GeoGraph__ = __webpack_require__(68);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -43149,22 +43152,9 @@ var DashboardApp = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'col-md-12' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'h3',
-                        null,
-                        'Peak Hours'
-                    ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__LineGraph__["default"], null)
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'col-md-12' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'h3',
-                        null,
-                        'Geo Graph'
-                    )
-                )
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'col-md-12' })
             );
         }
     }]);
@@ -43201,12 +43191,12 @@ if (true) {
 
 'use strict';
 
-var objectAssign$1 = __webpack_require__(7);
+var objectAssign$1 = __webpack_require__(6);
 var require$$0 = __webpack_require__(2);
-var emptyObject = __webpack_require__(16);
+var emptyObject = __webpack_require__(15);
 var invariant = __webpack_require__(3);
 var emptyFunction = __webpack_require__(1);
-var checkPropTypes = __webpack_require__(8);
+var checkPropTypes = __webpack_require__(7);
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -44951,10 +44941,10 @@ if (true) {
 
 'use strict';
 
-var react = __webpack_require__(6);
+var react = __webpack_require__(14);
 var invariant = __webpack_require__(3);
-var ExecutionEnvironment = __webpack_require__(18);
-var _assign = __webpack_require__(7);
+var ExecutionEnvironment = __webpack_require__(17);
+var _assign = __webpack_require__(6);
 var EventListener = __webpack_require__(53);
 var require$$0 = __webpack_require__(2);
 var hyphenateStyleName = __webpack_require__(54);
@@ -44962,8 +44952,8 @@ var emptyFunction = __webpack_require__(1);
 var camelizeStyleName = __webpack_require__(56);
 var performanceNow = __webpack_require__(58);
 var propTypes = __webpack_require__(60);
-var emptyObject = __webpack_require__(16);
-var checkPropTypes = __webpack_require__(8);
+var emptyObject = __webpack_require__(15);
+var checkPropTypes = __webpack_require__(7);
 var shallowEqual = __webpack_require__(62);
 var containsNode = __webpack_require__(63);
 var focusNode = __webpack_require__(66);
@@ -62447,7 +62437,7 @@ module.exports = performanceNow;
 
 
 
-var ExecutionEnvironment = __webpack_require__(18);
+var ExecutionEnvironment = __webpack_require__(17);
 
 var performance;
 
@@ -62508,10 +62498,10 @@ if (true) {
 var emptyFunction = __webpack_require__(1);
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(2);
-var assign = __webpack_require__(7);
+var assign = __webpack_require__(6);
 
-var ReactPropTypesSecret = __webpack_require__(17);
-var checkPropTypes = __webpack_require__(8);
+var ReactPropTypesSecret = __webpack_require__(16);
+var checkPropTypes = __webpack_require__(7);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -63284,25 +63274,11 @@ module.exports = getActiveElement;
 
 /***/ }),
 /* 68 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InfoGraph__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InfoGraph__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InfoGraph___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__InfoGraph__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -63348,6 +63324,12 @@ var GeoGraph = function (_InfoGraph) {
 }(__WEBPACK_IMPORTED_MODULE_0__InfoGraph__["default"]);
 
 /* unused harmony default export */ var _unused_webpack_default_export = (GeoGraph);
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

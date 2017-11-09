@@ -60,7 +60,8 @@
     <script type="text/javascript" src="{{asset('vendor/jquery/jquery.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+    {{--<script src="https://d3js.org/d3.v4.min.js"></script>--}}
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
     <script type="text/javascript" src="{{mix('js/app.js')}}"></script>
 </div>

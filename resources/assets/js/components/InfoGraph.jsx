@@ -22,7 +22,8 @@ class InfoGraph extends Component {
     render() {
         return (
             <div>
-                <svg id={this.state.name} width={960} height={500}></svg>
+                <div id="chartContainer" className={'info-graph'}>
+                </div>
             </div>
         );
     }

@@ -25,22 +25,19 @@ final class Service
         $rawData = $this->repository->fetchPeekHourDownloadData();
         $data = [];
         foreach ($rawData as $item) {
-            if (!isset($data[$item->dayHour])) {
-                $data[$item->dayHour] = [
-                    'hour' => $item->dayHour,
+            if (!isset($data[$item->app_id])) {
+                $data[$item->app_id] = [
+                    'name' => $item->app_id,
+                    'points' => []
                 ];
             }
 
-            if (isset( $data[$item->dayHour][$item->app_id])) {
-                $data[$item->dayHour][$item->app_id] += $item->total;
-            } else {
-                $data[$item->dayHour][$item->app_id] = $item->total;
-            }
+            $data[$item->app_id]['points'][$item->dayHour] = [
+                'hour' => $item->dayHour,
+                'count' => $item->total + rand(0,10)
+            ];
         }
 
-        return array_map(function($item) {
-            ksort($item);
-            return $item;
-        }, $data);
+        return array_values($data);
     }
 }

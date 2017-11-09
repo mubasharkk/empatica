@@ -18,11 +18,9 @@ class DashboardApp extends Component {
         return (
             <div className={'row'}>
                 <div className={'col-md-12'}>
-                    <h3>Peak Hours</h3>
                     <LineGraph/>
                 </div>
                 <div className={'col-md-12'}>
-                    <h3>Geo Graph</h3>
                     {/*<GeoGraph/>*/}
                 </div>
             </div>
