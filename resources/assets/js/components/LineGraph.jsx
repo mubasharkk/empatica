@@ -28,6 +28,7 @@ class LineGraph extends InfoGraph {
         this.setState({
             chart : new CanvasJS.Chart(this.state.name, {
                 exportEnabled: true,
+                theme: "light2",
                 animationEnabled: true,
                 title: {
                     text: "Downloads Peek Hours"

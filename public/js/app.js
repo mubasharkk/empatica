@@ -1510,6 +1510,7 @@ var LineGraph = function (_InfoGraph) {
             this.setState({
                 chart: new CanvasJS.Chart(this.state.name, {
                     exportEnabled: true,
+                    theme: "light2",
                     animationEnabled: true,
                     title: {
                         text: "Downloads Peek Hours"
@@ -63396,6 +63397,7 @@ var GeoGraph = function (_InfoGraph) {
             this.setState({
                 chart: new CanvasJS.Chart(this.state.name, {
                     exportEnabled: true,
+                    theme: "light2",
                     animationEnabled: true,
                     title: {
                         text: "Downloads by country"
