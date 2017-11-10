@@ -21,7 +21,7 @@ class DashboardApp extends Component {
                     <LineGraph/>
                 </div>
                 <div className={'col-md-12'}>
-                    {/*<GeoGraph/>*/}
+                    <GeoGraph/>
                 </div>
             </div>
         );

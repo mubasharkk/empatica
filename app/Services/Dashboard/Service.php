@@ -40,4 +40,21 @@ final class Service
 
         return array_values($data);
     }
+
+    public function downloadsByCountry()
+    {
+        $rawData = $this->repository->fetchDownloadsByCountry();
+
+        $data = [];
+
+        foreach ($rawData as $dt){
+            $data[$dt->country][] = [
+                'name' => $dt->country,
+                'appType' => $dt->app_id,
+                'total' => $dt->total
+            ];
+        }
+
+        return $data;
+    }
 }

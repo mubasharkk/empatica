@@ -33,18 +33,13 @@ final class DashboardDataController extends Controller
 
         switch ($type) {
             case 'peek-hours':
-                $data['data'] = $this->graphPeekHours();
+                $data['data'] = $this->service->peekHours();
+                break;
+            case 'geo-data':
+                $data['data'] = $this->service->downloadsByCountry();
                 break;
         }
 
         return response()->json($data);
-    }
-
-    /**
-     * @return array
-     */
-    private function graphPeekHours()
-    {
-        return $this->service->peekHours();
     }
 }

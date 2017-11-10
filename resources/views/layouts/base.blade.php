@@ -16,6 +16,7 @@
     <link href="{{asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/animate.css')}}" rel="stylesheet">
     <link href="{{mix('css/app.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 
     <style>
         .overflow-fix {
@@ -62,6 +63,12 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     {{--<script src="https://d3js.org/d3.v4.min.js"></script>--}}
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    <!-- Resources -->
+    <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+    <script src="https://www.amcharts.com/lib/3/maps/js/worldHigh.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
     <script type="text/javascript" src="{{mix('js/app.js')}}"></script>
 </div>

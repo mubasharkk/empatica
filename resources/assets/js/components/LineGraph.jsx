@@ -13,12 +13,13 @@ class LineGraph extends InfoGraph {
 
     componentDidMount() {
         this.prepareGraph();
+        this.populateGraph();
         setInterval( () => this.populateGraph(), 5000);
     }
 
     prepareGraph() {
         this.setState({
-            chart : new CanvasJS.Chart("chartContainer", {
+            chart : new CanvasJS.Chart(this.state.name, {
                 exportEnabled: true,
                 animationEnabled: true,
                 title: {

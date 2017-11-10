@@ -22,8 +22,8 @@ class InfoGraph extends Component {
     render() {
         return (
             <div>
-                <div id="chartContainer" className={'info-graph'}>
-                </div>
+                <div id={this.state.name} className={'info-graph'}></div>
+                <hr/>
             </div>
         );
     }
