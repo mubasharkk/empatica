@@ -8,6 +8,10 @@
 
     <title>{{config('app.name')}}</title>
 
+    <link rel="icon"
+          type="image/svg"
+          href="/img/logo.svg">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -29,18 +33,6 @@
 <div>
 
     @include('components.header')
-
-    {{--@if (Route::has('login'))--}}
-        {{--<div class="top-right links">--}}
-            {{--<a href="{{ url('/home') }}">Applications</a>--}}
-            {{--@auth--}}
-                {{--<a href="{{ url('/home') }}">Home</a>--}}
-                {{--@else--}}
-                    {{--<a href="{{ route('login') }}">Login</a>--}}
-                    {{--<a href="{{ route('register') }}">Register</a>--}}
-                    {{--@endauth--}}
-        {{--</div>--}}
-    {{--@endif--}}
 
     <div class="container-fluid content">
         @if($errors->any())
