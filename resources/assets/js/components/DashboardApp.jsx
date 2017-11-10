@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import LineGraph from './LineGraph';
 import GeoGraph from './GeoGraph';
 import PieChart from './PieChart';
+import DownloadsList from './DownloadsList';
 
 class DashboardApp extends Component {
 
@@ -40,6 +41,11 @@ class DashboardApp extends Component {
                     <PieChart/>
                 );
                 break;
+            case 'downloads-list':
+                return (
+                    <DownloadsList/>
+                );
+                break;
         }
     }
 
@@ -56,6 +62,9 @@ class DashboardApp extends Component {
                         </a>
                         <a href="#" className={"list-group-item"} onClick={()=> { this.handleClick('app-popularity')}}>
                             <i className={"fa fa-pie-chart fa-fw"}/> Apps Popularity
+                        </a>
+                        <a href="#" className={"list-group-item"} onClick={()=> { this.handleClick('downloads-list')}}>
+                            <i className={"fa fa-list fa-fw"}/> Downloads Data
                         </a>
                     </div>
                 </div>

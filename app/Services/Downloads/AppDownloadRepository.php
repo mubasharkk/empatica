@@ -4,6 +4,7 @@ namespace App\Services\Downloads;
 
 use App\AppDownload;
 use App\Services\Downloads\Dto\Location;
+use Carbon\Carbon;
 
 final class AppDownloadRepository
 {
@@ -33,7 +34,7 @@ final class AppDownloadRepository
 
     public function fetchAll()
     {
-        return AppDownload::all()->map(function (AppDownload $item) {
+        return AppDownload::orderBy('created_at', 'DESC')->get()->map(function (AppDownload $item) {
             return $this->buildAppDownload($item);
         });
     }
@@ -43,7 +44,8 @@ final class AppDownloadRepository
         return new \App\Services\Downloads\Dto\AppDownload(
             $item->id,
             $item->app_id,
-            new Location($item->country, $item->city, $item->postal_code)
+            new Location($item->country, $item->city, $item->postal_code),
+            $item->created_at
         );
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services\Downloads;
 
 use App\Exceptions\LocationNotFound;
@@ -40,8 +41,9 @@ final class Service
             /** @var GoogleAddress $geoCodedData */
             $geoCodedData = $this->geoCoder->reverse($latitude, $longitude)->get(0)->first();
 
-            if (!$geoCodedData)
+            if (!$geoCodedData) {
                 throw new LocationNotFound();
+            }
 
             $entryId = $this->repository->add(
                 $appId,
@@ -61,7 +63,25 @@ final class Service
 
     public function getAll()
     {
-        return $this->repository->fetchAll();
+        $data = array_map(function ($item) {
+            return [
+                'id' => $item['id'],
+                'app' => $item['type'],
+                'country' => $item['location']->country(),
+                'address' => (string)$item['location'],
+                'created' => $item['created']->timestamp
+            ];
+        }, $this->repository->fetchAll()->toArray());
+
+        return [
+            'data' => $data,
+            'columns' => array_map(function($key) {
+                return [
+                    'name' => $key,
+                    'label' => trans('common.downloads.'.$key)
+                ];
+            } , array_keys(head($data)))
+        ];
     }
 
     public function getByApp($appId)

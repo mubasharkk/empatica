@@ -56,7 +56,7 @@ final class Location implements Arrayable, \JsonSerializable
 
     public function __toString()
     {
-        return implode(', ', $this->toArray());
+        return implode(', ', array_filter($this->toArray()));
     }
 
     /**

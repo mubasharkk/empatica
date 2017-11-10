@@ -1,6 +1,7 @@
 <?php
 namespace App\Services\Downloads\Dto;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 
 final class AppDownload implements Arrayable, \JsonSerializable
@@ -19,17 +20,23 @@ final class AppDownload implements Arrayable, \JsonSerializable
      * @var Location
      */
     private $location;
+    /**
+     * @var Carbon
+     */
+    private $createdAt;
 
     /**
      * @param int $id
      * @param string $type
      * @param Location $location
+     * @param Carbon $createdAt
      */
-    public function __construct($id, $type, Location $location)
+    public function __construct($id, $type, Location $location, Carbon $createdAt)
     {
         $this->id = $id;
         $this->type = $type;
         $this->location = $location;
+        $this->createdAt = $createdAt;
     }
 
     public function id()
@@ -57,12 +64,21 @@ final class AppDownload implements Arrayable, \JsonSerializable
         return [
             'id' => $this->id(),
             'type' => $this->type(),
-            'location' => $this->location()
+            'location' => $this->location(),
+            'created' => $this->createdAt()
         ];
     }
 
     public function jsonSerialize()
     {
         return $this->toArray();
+    }
+
+    /**
+     * @return Carbon
+     */
+    public function createdAt()
+    {
+        return $this->createdAt;
     }
 }

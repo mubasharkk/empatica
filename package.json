@@ -23,6 +23,8 @@
         "vue": "^2.1.10"
     },
     "dependencies": {
-        "react-menu": "0.0.10"
+        "moment": "^2.19.1",
+        "react-menu": "0.0.10",
+        "react-table": "^6.7.4"
     }
 }
