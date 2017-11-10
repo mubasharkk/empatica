@@ -52,10 +52,6 @@ class LineGraph extends InfoGraph {
         });
     }
 
-    componentWillUnmount() {
-        clearInterval(this.state.interval);
-    }
-
     populateGraph() {
         axios.get('/api/dashboard/graph/peek-hours/data')
             .then(response => {

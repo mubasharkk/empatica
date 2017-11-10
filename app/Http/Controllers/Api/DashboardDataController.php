@@ -38,6 +38,9 @@ final class DashboardDataController extends Controller
             case 'geo-data':
                 $data['data'] = $this->service->downloadsByCountry();
                 break;
+            case 'app-popularity':
+                $data['data'] = $this->service->appsDownloadsPopularity();
+                break;
         }
 
         return response()->json($data);

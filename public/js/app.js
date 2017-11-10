@@ -1534,11 +1534,6 @@ var LineGraph = function (_InfoGraph) {
             });
         }
     }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            clearInterval(this.state.interval);
-        }
-    }, {
         key: 'populateGraph',
         value: function populateGraph() {
             var _this3 = this;
@@ -43132,6 +43127,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LineGraph__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__GeoGraph__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PieChart__ = __webpack_require__(79);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -43139,6 +43135,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -43178,6 +43175,9 @@ var DashboardApp = function (_Component) {
                 case 'geo-data':
                     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__GeoGraph__["a" /* default */], null);
                     break;
+                case 'app-popularity':
+                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__PieChart__["a" /* default */], null);
+                    break;
             }
         }
     }, {
@@ -43209,6 +43209,14 @@ var DashboardApp = function (_Component) {
                                 } },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: "fa fa-bar-chart fa-fw" }),
                             ' Downloads by Locality'
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: '#', className: "list-group-item", onClick: function onClick() {
+                                    _this2.handleClick('app-popularity');
+                                } },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: "fa fa-pie-chart fa-fw" }),
+                            ' Apps Popularity'
                         )
                     )
                 ),
@@ -63462,6 +63470,128 @@ var GeoGraph = function (_InfoGraph) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InfoGraph__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var PieChart = function (_InfoGraph) {
+    _inherits(PieChart, _InfoGraph);
+
+    function PieChart(props) {
+        _classCallCheck(this, PieChart);
+
+        var _this = _possibleConstructorReturn(this, (PieChart.__proto__ || Object.getPrototypeOf(PieChart)).call(this, props));
+
+        _this.state = {
+            name: 'pie-chart',
+            data: [],
+            interval: null
+        };
+        return _this;
+    }
+
+    _createClass(PieChart, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            this.prepareGraph();
+            this.populateGraph();
+            this.setState({
+                interval: setInterval(function () {
+                    return _this2.populateGraph();
+                }, 5000)
+            });
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            clearInterval(this.state.interval);
+        }
+    }, {
+        key: 'prepareGraph',
+        value: function prepareGraph() {
+            this.setState({
+                chart: new CanvasJS.Chart(this.state.name, {
+                    exportEnabled: true,
+                    theme: "light2",
+                    title: {
+                        text: "Most Downloaded Apps"
+                    },
+                    legend: {
+                        cursor: "pointer",
+                        itemclick: this.slicePie
+                    },
+                    data: this.state.data
+                })
+            });
+        }
+    }, {
+        key: 'slicePie',
+        value: function slicePie(e) {
+            if (typeof e.dataSeries.dataPoints[e.dataPointIndex].exploded === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+                e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+            } else {
+                e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+            }
+            e.chart.render();
+        }
+    }, {
+        key: 'populateGraph',
+        value: function populateGraph() {
+            var _this3 = this;
+
+            axios.get('/api/dashboard/graph/app-popularity/data').then(function (response) {
+                _this3.setState({
+                    data: [{
+                        type: "pie",
+                        startAngle: 240,
+                        yValueFormatString: "##0",
+                        indexLabel: "{label} ({y})",
+                        dataPoints: response.data.data.map(function (item) {
+                            return {
+                                label: item.name,
+                                y: item.total
+                            };
+                        })
+                    }]
+                });
+            }).then(function () {
+                _this3.state.chart.options.data = _this3.state.data;
+                _this3.state.chart.render();
+            });
+        }
+    }]);
+
+    return PieChart;
+}(__WEBPACK_IMPORTED_MODULE_0__InfoGraph__["default"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (PieChart);
 
 /***/ })
 /******/ ]);

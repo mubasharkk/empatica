@@ -34,7 +34,7 @@ final class Service
 
             $data[$item->app_id]['points'][$item->dayHour] = [
                 'hour' => $item->dayHour,
-                'count' => $item->total + rand(-10,60)
+                'count' => $item->total
             ];
         }
 
@@ -56,5 +56,20 @@ final class Service
         }
 
         return $data;
+    }
+
+    /**
+     * @return array
+     */
+    public function appsDownloadsPopularity()
+    {
+        $rawData = $this->repository->fetchDownloadCountsByApp();
+
+        return $rawData->map(function ($item) {
+            return [
+                'name' => $item->app_id,
+                'total' => $item->total
+            ];
+        });
     }
 }

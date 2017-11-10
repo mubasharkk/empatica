@@ -20,4 +20,12 @@ final class DashboardRepository
             ->orderBy('app_id', 'DESC')
             ->get();
     }
+
+    public function fetchDownloadCountsByApp()
+    {
+        return AppDownload::groupBy('app_id')
+            ->select(\DB::raw('count(id) as total, app_id'))
+            ->orderBy('app_id', 'DESC')
+            ->get();
+    }
 }
