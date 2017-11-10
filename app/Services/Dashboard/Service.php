@@ -34,7 +34,7 @@ final class Service
 
             $data[$item->app_id]['points'][$item->dayHour] = [
                 'hour' => $item->dayHour,
-                'count' => $item->total + rand(0,10)
+                'count' => $item->total + rand(-10,60)
             ];
         }
 

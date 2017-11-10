@@ -17,6 +17,7 @@ final class DashboardRepository
     {
         return AppDownload::groupBy('country', 'app_id')
             ->select(\DB::raw('count(id) as total, country, app_id'))
+            ->orderBy('app_id', 'DESC')
             ->get();
     }
 }

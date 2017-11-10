@@ -51,14 +51,14 @@ class LineGraph extends InfoGraph {
                     data: response.data.data.map(function (item) {
                         return {
                             'name': item.name,
-                            'type': 'line',
+                            'type': 'spline',
                             showInLegend: true,
-                            xValueFormatString: "#0.##",
+                            xValueFormatString: "Hour: #00:'00'",
                             dataPoints: item.points.map(function (data) {
                                 return {
                                     x: data.hour,
                                     y: data.count
-                                };
+                                }
                             })
                         };
                     })

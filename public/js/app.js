@@ -1534,9 +1534,9 @@ var LineGraph = function (_InfoGraph) {
                     data: response.data.data.map(function (item) {
                         return {
                             'name': item.name,
-                            'type': 'line',
+                            'type': 'spline',
                             showInLegend: true,
-                            xValueFormatString: "#0.##",
+                            xValueFormatString: "Hour: #00:'00'",
                             dataPoints: item.points.map(function (data) {
                                 return {
                                     x: data.hour,
@@ -43145,20 +43145,32 @@ var DashboardApp = function (_Component) {
     }
 
     _createClass(DashboardApp, [{
+        key: '_onButtonClick',
+        value: function _onButtonClick() {
+            this.setState({
+                showComponent: true
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'row' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'col-md-3' }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { className: 'col-md-12' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__LineGraph__["default"], null)
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'div',
-                    { className: 'col-md-12' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__GeoGraph__["a" /* default */], null)
+                    { className: 'col-md-9' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'col-md-12' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__LineGraph__["default"], null)
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'col-md-12' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__GeoGraph__["a" /* default */], null)
+                    )
                 )
             );
         }
@@ -63328,10 +63340,7 @@ var GeoGraph = function (_InfoGraph) {
                         text: "Downloads by country"
                     },
                     axisY: {
-                        valueFormatString: "#0"
-                    },
-                    axisX: {
-                        valueFormatString: "0"
+                        title: "App ID"
                     },
                     legend: {
                         cursor: "pointer",
@@ -63355,7 +63364,7 @@ var GeoGraph = function (_InfoGraph) {
 
                 for (var prop in data) {
                     var obj = {
-                        type: "stackedBar",
+                        type: "bar",
                         name: prop,
                         showInLegend: "true",
                         xValueFormatString: "0",
@@ -63363,7 +63372,7 @@ var GeoGraph = function (_InfoGraph) {
                         dataPoints: data[prop].map(function (item) {
                             return {
                                 y: item.total,
-                                x: item.appType
+                                label: item.appType
                             };
                         })
                     };

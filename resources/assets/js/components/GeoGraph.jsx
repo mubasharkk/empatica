@@ -27,11 +27,8 @@ class GeoGraph extends InfoGraph {
                 title: {
                     text: "Downloads by country"
                 },
-                axisY:{
-                    valueFormatString: "#0",
-                },
-                axisX: {
-                    valueFormatString: "0"
+                axisY: {
+                    title: "App ID"
                 },
                 legend: {
                     cursor: "pointer",
@@ -52,7 +49,7 @@ class GeoGraph extends InfoGraph {
 
                 for (let prop in data) {
                     let obj = {
-                        type: "stackedBar",
+                        type: "bar",
                         name: prop,
                         showInLegend: "true",
                         xValueFormatString: "0",
@@ -60,7 +57,7 @@ class GeoGraph extends InfoGraph {
                         dataPoints: data[prop].map((item) => {
                             return {
                                 y: item.total,
-                                x: item.appType
+                                label: item.appType
                             };
                         })
                     }
