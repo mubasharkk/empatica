@@ -7,14 +7,21 @@ class LineGraph extends InfoGraph {
 
         this.state = {
             name: 'line-graph',
-            data: []
+            data: [],
+            interval: null
         }
     }
 
     componentDidMount() {
         this.prepareGraph();
         this.populateGraph();
-        setInterval( () => this.populateGraph(), 5000);
+        this.setState({
+            interval : setInterval( () => this.populateGraph(), 5000)
+        });
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.interval);
     }
 
     prepareGraph() {
@@ -42,6 +49,10 @@ class LineGraph extends InfoGraph {
                 data: this.state.data
             })
         });
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.interval);
     }
 
     populateGraph() {

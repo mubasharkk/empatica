@@ -9,27 +9,50 @@ class DashboardApp extends Component {
         super(props);
 
         this.props = props;
-        this.state = {};
+        this.state = {
+            componentType : 'peek-hours'
+        };
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    _onButtonClick() {
-        this.setState({
-            showComponent: true,
-        });
+    handleClick(type) {
+        this.setState({componentType: type });
+    }
+
+    renderComponent()
+    {
+        switch (this.state.componentType){
+            default:
+            case 'peek-hours':
+                return (
+                    <LineGraph/>
+                );
+                break;
+            case 'geo-data':
+                return (
+                    <GeoGraph/>
+                );
+                break;
+        }
     }
 
     render() {
         return (
             <div className={'row'}>
                 <div className={'col-md-3'}>
-
+                    <div className={"list-group"}>
+                        <a href="#" className={"list-group-item"} onClick={()=> { this.handleClick('peek-hours')}}>
+                            <i className={"fa fa-line-chart fa-fw"}/> Hourly Downloads
+                        </a>
+                        <a href="#" className={"list-group-item"} onClick={()=> { this.handleClick('geo-data')}}>
+                            <i className={"fa fa-bar-chart fa-fw"}/> Downloads by Locality
+                        </a>
+                    </div>
                 </div>
                 <div className={'col-md-9'}>
                     <div className={'col-md-12'}>
-                        <LineGraph/>
-                    </div>
-                    <div className={'col-md-12'}>
-                        <GeoGraph/>
+                        {this.renderComponent()}
                     </div>
                 </div>
             </div>

@@ -42,7 +42,7 @@
         {{--</div>--}}
     {{--@endif--}}
 
-    <div class="container content">
+    <div class="container-fluid content">
         @if($errors->any())
             @foreach ($errors->all() as $error)
                 <div class="alert alert-danger">

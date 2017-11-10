@@ -1480,7 +1480,8 @@ var LineGraph = function (_InfoGraph) {
 
         _this.state = {
             name: 'line-graph',
-            data: []
+            data: [],
+            interval: null
         };
         return _this;
     }
@@ -1492,9 +1493,16 @@ var LineGraph = function (_InfoGraph) {
 
             this.prepareGraph();
             this.populateGraph();
-            setInterval(function () {
-                return _this2.populateGraph();
-            }, 5000);
+            this.setState({
+                interval: setInterval(function () {
+                    return _this2.populateGraph();
+                }, 5000)
+            });
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            clearInterval(this.state.interval);
         }
     }, {
         key: 'prepareGraph',
@@ -1523,6 +1531,11 @@ var LineGraph = function (_InfoGraph) {
                     data: this.state.data
                 })
             });
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            clearInterval(this.state.interval);
         }
     }, {
         key: 'populateGraph',
@@ -43140,36 +43153,71 @@ var DashboardApp = function (_Component) {
         var _this = _possibleConstructorReturn(this, (DashboardApp.__proto__ || Object.getPrototypeOf(DashboardApp)).call(this, props));
 
         _this.props = props;
-        _this.state = {};
+        _this.state = {
+            componentType: 'peek-hours'
+        };
+
+        _this.handleClick = _this.handleClick.bind(_this);
         return _this;
     }
 
     _createClass(DashboardApp, [{
-        key: '_onButtonClick',
-        value: function _onButtonClick() {
-            this.setState({
-                showComponent: true
-            });
+        key: 'handleClick',
+        value: function handleClick(type) {
+            this.setState({ componentType: type });
+        }
+    }, {
+        key: 'renderComponent',
+        value: function renderComponent() {
+            switch (this.state.componentType) {
+                default:
+                case 'peek-hours':
+                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__LineGraph__["default"], null);
+                    break;
+                case 'geo-data':
+                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__GeoGraph__["a" /* default */], null);
+                    break;
+            }
         }
     }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'row' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'col-md-3' }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'col-md-3' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: "list-group" },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: '#', className: "list-group-item", onClick: function onClick() {
+                                    _this2.handleClick('peek-hours');
+                                } },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: "fa fa-line-chart fa-fw" }),
+                            ' Hourly Downloads'
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: '#', className: "list-group-item", onClick: function onClick() {
+                                    _this2.handleClick('geo-data');
+                                } },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: "fa fa-bar-chart fa-fw" }),
+                            ' Downloads by Locality'
+                        )
+                    )
+                ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'col-md-9' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: 'col-md-12' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__LineGraph__["default"], null)
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'col-md-12' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__GeoGraph__["a" /* default */], null)
+                        this.renderComponent()
                     )
                 )
             );
@@ -63314,7 +63362,9 @@ var GeoGraph = function (_InfoGraph) {
         var _this = _possibleConstructorReturn(this, (GeoGraph.__proto__ || Object.getPrototypeOf(GeoGraph)).call(this, props));
 
         _this.state = {
-            name: 'geo-graph'
+            name: 'geo-graph',
+            data: [],
+            interval: null
         };
         return _this;
     }
@@ -63325,9 +63375,20 @@ var GeoGraph = function (_InfoGraph) {
     }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
+            var _this2 = this;
+
             this.prepareGraph();
             this.populateGraph();
-            // setInterval( () => this.populateGraph(), 5000);
+            this.setState({
+                interval: setInterval(function () {
+                    return _this2.populateGraph();
+                }, 5000)
+            });
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            clearInterval(this.state.interval);
         }
     }, {
         key: 'prepareGraph',
@@ -63356,7 +63417,7 @@ var GeoGraph = function (_InfoGraph) {
     }, {
         key: 'populateGraph',
         value: function populateGraph() {
-            var _this2 = this;
+            var _this3 = this;
 
             axios.get('/api/dashboard/graph/geo-data/data').then(function (response) {
                 var points = [],
@@ -63379,12 +63440,12 @@ var GeoGraph = function (_InfoGraph) {
                     points.push(obj);
                 }
 
-                _this2.setState({
+                _this3.setState({
                     data: points
                 });
             }).then(function () {
-                _this2.state.chart.options.data = _this2.state.data;
-                _this2.state.chart.render();
+                _this3.state.chart.options.data = _this3.state.data;
+                _this3.state.chart.render();
             });
         }
     }]);

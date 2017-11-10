@@ -5,7 +5,9 @@ class GeoGraph extends InfoGraph {
         super(props);
 
         this.state = {
-            name: 'geo-graph'
+            name: 'geo-graph',
+            data: [],
+            interval: null
         };
     }
 
@@ -16,7 +18,13 @@ class GeoGraph extends InfoGraph {
     componentDidMount() {
         this.prepareGraph();
         this.populateGraph()
-        // setInterval( () => this.populateGraph(), 5000);
+        this.setState({
+            interval : setInterval( () => this.populateGraph(), 5000)
+        });
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.interval);
     }
 
     prepareGraph() {
