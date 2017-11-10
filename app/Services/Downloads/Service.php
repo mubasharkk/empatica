@@ -69,7 +69,8 @@ final class Service
                 'app' => $item['type'],
                 'country' => $item['location']->country(),
                 'address' => (string)$item['location'],
-                'created' => $item['created']->timestamp
+                'created' => $item['created']->timestamp,
+                'coordinates' => $item['coordinates']
             ];
         }, $this->repository->fetchAll()->toArray());
 

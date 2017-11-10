@@ -17677,7 +17677,7 @@ return zhTw;
 
 __webpack_require__(142);
 __webpack_require__(168);
-module.exports = __webpack_require__(202);
+module.exports = __webpack_require__(204);
 
 
 /***/ }),
@@ -59257,6 +59257,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__GeoGraph__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PieChart__ = __webpack_require__(186);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DownloadsList__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Maps_MapView__ = __webpack_require__(202);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -59264,6 +59265,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -59310,6 +59312,9 @@ var DashboardApp = function (_Component) {
                     break;
                 case 'downloads-list':
                     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__DownloadsList__["a" /* default */], null);
+                    break;
+                case 'map-view':
+                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__Maps_MapView__["a" /* default */], null);
                     break;
             }
         }
@@ -59358,6 +59363,14 @@ var DashboardApp = function (_Component) {
                                 } },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: "fa fa-list fa-fw" }),
                             ' Downloads Data'
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'a',
+                            { href: '#', className: "list-group-item", onClick: function onClick() {
+                                    _this2.handleClick('map-view');
+                                } },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: "fa fa-map fa-fw" }),
+                            ' Map View'
                         )
                     )
                 ),
@@ -80980,6 +80993,326 @@ webpackContext.id = 201;
 
 /***/ }),
 /* 202 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_google_maps__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_google_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_google_maps__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var MapView = function (_Component) {
+    _inherits(MapView, _Component);
+
+    function MapView(props) {
+        _classCallCheck(this, MapView);
+
+        var _this = _possibleConstructorReturn(this, (MapView.__proto__ || Object.getPrototypeOf(MapView)).call(this, props));
+
+        __WEBPACK_IMPORTED_MODULE_1_google_maps___default.a.KEY = window.GOOGLE_MAP_API_KEY;
+
+        _this.state = {
+            map: null,
+            markers: []
+        };
+        return _this;
+    }
+
+    _createClass(MapView, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_1_google_maps___default.a.load(function (google) {
+                _this2.setState({
+                    map: new google.maps.Map(document.getElementById('map-view'), {
+                        center: { lat: 48.1351, lng: 11.5820 },
+                        zoom: 5
+                    })
+                });
+
+                _this2.populateMap();
+            });
+        }
+    }, {
+        key: 'populateMap',
+        value: function populateMap() {
+            var _this3 = this;
+
+            axios.get('/api/download').then(function (response) {
+                response.data.data.data.forEach(function (element) {
+                    _this3.addMarkers({
+                        lat: parseFloat(element.coordinates.latitude),
+                        lng: parseFloat(element.coordinates.longitude)
+                    });
+                });
+            });
+        }
+    }, {
+        key: 'addMarkers',
+        value: function addMarkers(coordinates) {
+            this.state.markers.push(new google.maps.Marker({
+                position: coordinates,
+                map: this.state.map
+            }));
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { id: 'map-view', style: { height: '500px' } },
+                'This is a map '
+            );
+        }
+    }]);
+
+    return MapView;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (MapView);
+
+/***/ }),
+/* 203 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(root, factory) {
+
+	if (root === null) {
+		throw new Error('Google-maps package can be used only in browser');
+	}
+
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else if (typeof exports === 'object') {
+		module.exports = factory();
+	} else {
+		root.GoogleMapsLoader = factory();
+	}
+
+})(typeof window !== 'undefined' ? window : null, function() {
+
+
+	'use strict';
+
+
+	var googleVersion = '3.18';
+
+	var script = null;
+
+	var google = null;
+
+	var loading = false;
+
+	var callbacks = [];
+
+	var onLoadEvents = [];
+
+	var originalCreateLoaderMethod = null;
+
+
+	var GoogleMapsLoader = {};
+
+
+	GoogleMapsLoader.URL = 'https://maps.googleapis.com/maps/api/js';
+
+	GoogleMapsLoader.KEY = null;
+
+	GoogleMapsLoader.LIBRARIES = [];
+
+	GoogleMapsLoader.CLIENT = null;
+
+	GoogleMapsLoader.CHANNEL = null;
+
+	GoogleMapsLoader.LANGUAGE = null;
+
+	GoogleMapsLoader.REGION = null;
+
+	GoogleMapsLoader.VERSION = googleVersion;
+
+	GoogleMapsLoader.WINDOW_CALLBACK_NAME = '__google_maps_api_provider_initializator__';
+
+
+	GoogleMapsLoader._googleMockApiObject = {};
+
+
+	GoogleMapsLoader.load = function(fn) {
+		if (google === null) {
+			if (loading === true) {
+				if (fn) {
+					callbacks.push(fn);
+				}
+			} else {
+				loading = true;
+
+				window[GoogleMapsLoader.WINDOW_CALLBACK_NAME] = function() {
+					ready(fn);
+				};
+
+				GoogleMapsLoader.createLoader();
+			}
+		} else if (fn) {
+			fn(google);
+		}
+	};
+
+
+	GoogleMapsLoader.createLoader = function() {
+		script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.src = GoogleMapsLoader.createUrl();
+
+		document.body.appendChild(script);
+	};
+
+
+	GoogleMapsLoader.isLoaded = function() {
+		return google !== null;
+	};
+
+
+	GoogleMapsLoader.createUrl = function() {
+		var url = GoogleMapsLoader.URL;
+
+		url += '?callback=' + GoogleMapsLoader.WINDOW_CALLBACK_NAME;
+
+		if (GoogleMapsLoader.KEY) {
+			url += '&key=' + GoogleMapsLoader.KEY;
+		}
+
+		if (GoogleMapsLoader.LIBRARIES.length > 0) {
+			url += '&libraries=' + GoogleMapsLoader.LIBRARIES.join(',');
+		}
+
+		if (GoogleMapsLoader.CLIENT) {
+			url += '&client=' + GoogleMapsLoader.CLIENT + '&v=' + GoogleMapsLoader.VERSION;
+		}
+
+		if (GoogleMapsLoader.CHANNEL) {
+			url += '&channel=' + GoogleMapsLoader.CHANNEL;
+		}
+
+		if (GoogleMapsLoader.LANGUAGE) {
+			url += '&language=' + GoogleMapsLoader.LANGUAGE;
+		}
+
+		if (GoogleMapsLoader.REGION) {
+			url += '&region=' + GoogleMapsLoader.REGION;
+		}
+
+		return url;
+	};
+
+
+	GoogleMapsLoader.release = function(fn) {
+		var release = function() {
+			GoogleMapsLoader.KEY = null;
+			GoogleMapsLoader.LIBRARIES = [];
+			GoogleMapsLoader.CLIENT = null;
+			GoogleMapsLoader.CHANNEL = null;
+			GoogleMapsLoader.LANGUAGE = null;
+			GoogleMapsLoader.REGION = null;
+			GoogleMapsLoader.VERSION = googleVersion;
+
+			google = null;
+			loading = false;
+			callbacks = [];
+			onLoadEvents = [];
+
+			if (typeof window.google !== 'undefined') {
+				delete window.google;
+			}
+
+			if (typeof window[GoogleMapsLoader.WINDOW_CALLBACK_NAME] !== 'undefined') {
+				delete window[GoogleMapsLoader.WINDOW_CALLBACK_NAME];
+			}
+
+			if (originalCreateLoaderMethod !== null) {
+				GoogleMapsLoader.createLoader = originalCreateLoaderMethod;
+				originalCreateLoaderMethod = null;
+			}
+
+			if (script !== null) {
+				script.parentElement.removeChild(script);
+				script = null;
+			}
+
+			if (fn) {
+				fn();
+			}
+		};
+
+		if (loading) {
+			GoogleMapsLoader.load(function() {
+				release();
+			});
+		} else {
+			release();
+		}
+	};
+
+
+	GoogleMapsLoader.onLoad = function(fn) {
+		onLoadEvents.push(fn);
+	};
+
+
+	GoogleMapsLoader.makeMock = function() {
+		originalCreateLoaderMethod = GoogleMapsLoader.createLoader;
+
+		GoogleMapsLoader.createLoader = function() {
+			window.google = GoogleMapsLoader._googleMockApiObject;
+			window[GoogleMapsLoader.WINDOW_CALLBACK_NAME]();
+		};
+	};
+
+
+	var ready = function(fn) {
+		var i;
+
+		loading = false;
+
+		if (google === null) {
+			google = window.google;
+		}
+
+		for (i = 0; i < onLoadEvents.length; i++) {
+			onLoadEvents[i](google);
+		}
+
+		if (fn) {
+			fn(google);
+		}
+
+		for (i = 0; i < callbacks.length; i++) {
+			callbacks[i](google);
+		}
+
+		callbacks = [];
+	};
+
+
+	return GoogleMapsLoader;
+
+});
+
+
+/***/ }),
+/* 204 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

@@ -23,4 +23,5 @@ return [
         ],
     ],
     'adapter'  => Client::class,
+    'apiKey' => 'AIzaSyBf_Vb_LjkARy7MGGlFlGJvbtzi9uzJzT0'
 ];

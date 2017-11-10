@@ -4,6 +4,7 @@ import LineGraph from './LineGraph';
 import GeoGraph from './GeoGraph';
 import PieChart from './PieChart';
 import DownloadsList from './DownloadsList';
+import MapView from './Maps/MapView';
 
 class DashboardApp extends Component {
 
@@ -46,6 +47,11 @@ class DashboardApp extends Component {
                     <DownloadsList/>
                 );
                 break;
+            case 'map-view':
+                return (
+                    <MapView/>
+                );
+                break;
         }
     }
 
@@ -65,6 +71,9 @@ class DashboardApp extends Component {
                         </a>
                         <a href="#" className={"list-group-item"} onClick={()=> { this.handleClick('downloads-list')}}>
                             <i className={"fa fa-list fa-fw"}/> Downloads Data
+                        </a>
+                        <a href="#" className={"list-group-item"} onClick={()=> { this.handleClick('map-view')}}>
+                            <i className={"fa fa-map fa-fw"}/> Map View
                         </a>
                     </div>
                 </div>

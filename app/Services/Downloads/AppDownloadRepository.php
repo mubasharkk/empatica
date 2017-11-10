@@ -45,7 +45,11 @@ final class AppDownloadRepository
             $item->id,
             $item->app_id,
             new Location($item->country, $item->city, $item->postal_code),
-            $item->created_at
+            $item->created_at,
+            [
+                'latitude' => $item->latitude,
+                'longitude' => $item->longitude
+            ]
         );
     }
 

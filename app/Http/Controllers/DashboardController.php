@@ -7,7 +7,7 @@ final class DashboardController extends Controller
     public function index()
     {
        \JavaScript::put([
-            'mubashar' => 'Khokhar'
+            'GOOGLE_MAP_API_KEY' => config('geocoder.apiKey')
         ]);
 
         return view('pages.dashboard.welcome');

@@ -20,23 +20,31 @@ final class AppDownload implements Arrayable, \JsonSerializable
      * @var Location
      */
     private $location;
+
     /**
      * @var Carbon
      */
     private $createdAt;
 
     /**
+     * @var array
+     */
+    private $coordinates;
+
+    /**
      * @param int $id
      * @param string $type
      * @param Location $location
      * @param Carbon $createdAt
+     * @param array $coordinates
      */
-    public function __construct($id, $type, Location $location, Carbon $createdAt)
+    public function __construct($id, $type, Location $location, Carbon $createdAt, array $coordinates = [])
     {
         $this->id = $id;
         $this->type = $type;
         $this->location = $location;
         $this->createdAt = $createdAt;
+        $this->coordinates = $coordinates;
     }
 
     public function id()
@@ -54,6 +62,11 @@ final class AppDownload implements Arrayable, \JsonSerializable
         return $this->location;
     }
 
+    public function coordinates()
+    {
+        return $this->coordinates;
+    }
+
     /**
      * Get the instance as an array.
      *
@@ -65,6 +78,7 @@ final class AppDownload implements Arrayable, \JsonSerializable
             'id' => $this->id(),
             'type' => $this->type(),
             'location' => $this->location(),
+            'coordinates' => $this->coordinates(),
             'created' => $this->createdAt()
         ];
     }
