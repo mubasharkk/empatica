@@ -59,6 +59,17 @@ http://dashboard.empatica.dev/api/download
 |latitude| required; string (max:100)|Latitude of the download entity|
 |longitude| required; string (max:100)|Longitude of the download entity|
 
+## Frontend 
+
+The frontend is based on react js, the related files can be found at ```resources/assets/js```.
+The dasboard offers 4 types of data analysis about the downloads.
+
+1. Downloads data
+2. Downloads peeks hours per app (live graph)
+3. Downloads by country (live graph)
+4. Overall apps popularity (live graph)
+
+**Note:** Due to limit manageable for this task, I was not able to added more features to it.
 
 ## Files to look into
 
