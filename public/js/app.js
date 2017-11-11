@@ -77080,6 +77080,7 @@ var DownloadsList = function (_Component) {
                 _this2.setState({
                     data: response.data.data.data.map(function (item) {
                         item.created = __WEBPACK_IMPORTED_MODULE_4_moment___default.a.unix(item.created).format("DD.MM.YYYY H:m:s");
+                        item.coordinates = item.coordinates.latitude + ', ' + item.coordinates.longitude;
                         return item;
                     }),
                     columns: response.data.data.columns.map(function (item) {

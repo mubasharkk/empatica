@@ -22,6 +22,7 @@ class DownloadsList extends Component {
                 this.setState({
                     data: response.data.data.data.map(function (item) {
                         item.created = moment.unix(item.created).format("DD.MM.YYYY H:m:s");
+                        item.coordinates = item.coordinates.latitude + ', ' + item.coordinates.longitude;
                         return item;
                     }),
                     columns: response.data.data.columns.map(function (item) {
