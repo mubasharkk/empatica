@@ -59,6 +59,8 @@ http://dashboard.empatica.dev/api/download
 |latitude| required; string (max:100)|Latitude of the download entity|
 |longitude| required; string (max:100)|Longitude of the download entity|
 
+**Note:** The above mentioned controllers are written using TDD.
+
 ## Frontend 
 
 The frontend is based on react js, the related files can be found at ```resources/assets/js```.
@@ -96,5 +98,8 @@ resources
 └───assets
 │       │   ...
 │   └───js  //react files
+tests
+|   |
+│   └───Feature
 │    
 ```
